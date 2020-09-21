@@ -1,0 +1,32 @@
+.campo-digitacao {
+    font-size: 20px;
+    height: 130px;
+}
+
+.frase {
+    font-size: 20px;
+    text-align: left;
+}
+.campo-desativado{
+    background-color: lightgray;
+}
+.icons{
+    vertical-align: middle;
+}
+.borda-verde{
+    border: 3px solid green;
+    outline: none !important;
+}
+
+.borda-vermelha{
+    border: 3px solid red;
+    outline: none !important;
+}
+
+.placar {
+    display: none;
+}
+
+body {
+    overflow: scroll; /* Adicionando uma posição para o scroll no body do elemento*/
+}
