@@ -47,8 +47,8 @@ function inicializaContadores() {
     });
 }
 function inicializaCronometro() {
-    var tempoRestante = $("#tempo-digitacao").text();
     campo.one("focus", function () { // Função one executa uma única vez. O parametro focus indica quando o usuário clica sobre o elemento ele ficará em evidência. 
+        var tempoRestante = $("#tempo-digitacao").text();   
         var cronometroID = setInterval(function () { //Executa a função e n tempo
             tempoRestante--; // Aqui vai retirando tempo do valor do campo tempo-digitação.
             $("#tempo-digitacao").text(tempoRestante);
@@ -80,8 +80,8 @@ function reiniciaJogo() {
     campo.toggleClass("campo-desativado");
 }
 function inicializaMarcadores() {
-    var frase = $(".frase").text();
     campo.on("input", function () {
+        var frase = $(".frase").text();
         var digitado = campo.val();
         var comparavel = frase.substr(0, digitado.length); //Função de substring do JQuery. Aqui significa: Pegue da posição 0 até o tamanho do digitado. 
         if (digitado == comparavel) {
@@ -94,6 +94,10 @@ function inicializaMarcadores() {
     });
 }
 
+function atualizaTempoInicial(tempo) {
+    tempoInicial = tempo; //Atualizar o tempo inicial para manter atualizado quando reinciar a frase.    
+    $("#tempo-digitacao").text(tempo); // Adicionando o tempo de digitação na frase.
+}
 
 // Nessa função é criada elementos html com JQUERY. Usando o seletor já cria um elemento quando está envolvido em tags. 
 

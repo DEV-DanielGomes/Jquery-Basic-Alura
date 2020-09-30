@@ -30,3 +30,7 @@
 body {
     overflow: scroll; /* Adicionando uma posição para o scroll no body do elemento*/
 }
+#erro{
+    color: red;
+    display: none;
+}
