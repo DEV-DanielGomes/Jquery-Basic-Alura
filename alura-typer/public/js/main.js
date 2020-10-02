@@ -35,6 +35,7 @@ $(document).ready(function () {// Após a página ter sido carregada, execute es
     inicializaMarcadores();
 
     $("#botao-reiniciar").click(reiniciaJogo);// A função click é a mesa coisa que on.("click", function(){});
+    atualizaPlacar();
 })
 
 function inicializaContadores() {

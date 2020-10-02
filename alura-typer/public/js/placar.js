@@ -86,3 +86,45 @@ function scrollPlacar() {
         scrollTop: posicaoPlacar
     }, 1000);
 }
+$("#botao-sync").click(sincronizaPlacar);
+
+function sincronizaPlacar(){ // Endereço em que vai se gravado o placar.
+    var placar = [];
+
+    var linhas = $("tbody>tr"); // Seletores CSS avançado. Seleciona todos os tr que são filhas diretas do tbody.
+
+    linhas.each(function(){ // Função JQuery para pecorrer uma lista.
+        var usuario = $(this).find("td:nth-child(1)").text(); //Uso de seletores avançados. Pega o primeiro elemento filho do td. 
+        var palavras = $(this).find("td:nth-child(2)").text();
+        var score = { // Adicionando os valores locais em um objeto..
+            usuario: usuario,
+            pontos: palavras            
+        };
+        placar.push(score); // Adicionando valores no array usando a função push. 
+    });
+
+    var dados = { // criando um objeto com o array.
+        placar: placar
+    };
+
+    $.post("http://localhost:3000/placar", dados, function(){ // Requisição Post com JQuery.
+        console.log("Placar sincronizado com sucesso");
+    });
+
+}
+//Seletores por hierarquia
+//$("p > b") //seleciona todas as etiquetas B que são filhas diretas dos parágrafos. Seletor parent > child:
+
+//$("p.paragrafovermelho + p") //Isto seleciona os parágrafos que estão depois de qualquer parágrafo que tenha a classe "paragrafovermelho" Seletor prev + next:
+//$("#meuparagrafo ~ table") //seleciona os elementos TABLE que são irmãos do elemento com id="meuparagrafo"
+//$("#a2 ~ div.classe") //seleciona os elementos irmãos do que tem o id="a2" que sejam etiquetas DIV com a class="classe".
+
+function atualizaPlacar(){
+    $.get("http://localhost:3000/placar",function(data){ // Realiza uma consulta Get
+        $(data).each(function(){ // Função para pecorrer uma lista
+            var linha = novaLinha(this.usuario, this.pontos); // Cria uma nova linha com os valores de retorno do get. 
+            linha.find(".botao-remover").click(removeLinha); // Selecionando o elemento com a classe .botao remover e adicionando um evento de click.
+            $("tbody").append(linha); // Adicionar a nova linha no tbody do placar.
+        });
+    });
+}
