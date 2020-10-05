@@ -1,0 +1,23 @@
+.card{
+	width: 49%;
+	display: inline-block;
+	vertical-align: top;
+}
+
+
+#botao-jogue{
+	width: 150px;
+	display: block;
+	margin: 50px auto;
+}
+
+.imagem-jogo {
+	border: 2px solid gray;
+}
+.slick {
+    height: auto; /*Ajustando a altura conforme o tamanho do elemento*/
+}
+
+.slick-prev:before, .slick-next:before{  /*Adicionando cor na seta do slick*/
+    color: black;
+}

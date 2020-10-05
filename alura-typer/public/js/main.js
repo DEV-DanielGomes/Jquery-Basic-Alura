@@ -36,6 +36,13 @@ $(document).ready(function () {// Após a página ter sido carregada, execute es
 
     $("#botao-reiniciar").click(reiniciaJogo);// A função click é a mesa coisa que on.("click", function(){});
     atualizaPlacar();
+    $("#usuarios").selectize({ // Usando o plugin selectize, acessa os elementos do tipo select. http://selectize.github.io/selectize.js/
+        create: true,
+        sortField: 'text'
+    });
+    $(".tooltip").tooltipster({ //Usando a função tooltipster, adiciona uma mensagem de contexto. http://iamceege.github.io/tooltipster/
+        trigger: "custom"
+    });
 })
 
 function inicializaContadores() {

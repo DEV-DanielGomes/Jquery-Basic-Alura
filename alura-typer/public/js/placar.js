@@ -1,6 +1,6 @@
 function inserePlacar() {
     var corpoTabela = $(".placar").find("tbody"); // Seleciona o elemento do meu placar e desce até o tbody. Aqui está selecionado o tbody.
-    var usuario = "Daniel";
+    var usuario = $("#usuarios").val();
     var numPalavras = $("#contador-palavras").text();
     // var botaoRemover = "<a href='#'><i class='small material-icons'>delete</i></a>" ;
     var linha = novaLinha(usuario, numPalavras);
@@ -107,8 +107,15 @@ function sincronizaPlacar(){ // Endereço em que vai se gravado o placar.
         placar: placar
     };
 
-    $.post("http://localhost:3000/placar", dados, function(){ // Requisição Post com JQuery.
+    $.post("http://localhost:3000/placar", dados , function() { // Requisição POST JQuery
         console.log("Placar sincronizado com sucesso");
+        $(".tooltip").tooltipster("open");  // Abrindo uma requisção com o plugin tooltipster. 
+    }).fail(function(){
+        $(".tooltip").tooltipster("open").tooltipster("content", "Falha ao sincronizar");   // Abrindo uma requisção com o plugin tooltipster e adicionando uma mensagem. 
+    }).always(function(){ //novo
+        setTimeout(function() {
+        $(".tooltip").tooltipster("close"); // Fechando uma requisição com o plugin tooltipster.
+    }, 1200);
     });
 
 }
